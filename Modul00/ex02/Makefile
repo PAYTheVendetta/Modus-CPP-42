@@ -6,7 +6,7 @@
 #    By: aialonso <aialonso@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/26 19:46:35 by aialonso          #+#    #+#              #
-#    Updated: 2026/04/27 13:19:57 by aialonso         ###   ########.fr        #
+#    Updated: 2026/06/10 19:27:48 by aialonso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,8 @@ NAME = PhoneBook
 
 CPP = c++
 
-SOURCE = Contact.cpp\
-		 PhoneBook.cpp\
-		 main.cpp
+SOURCE = Account.cpp\
+		 tests.cpp
 
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
