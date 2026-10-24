@@ -11,11 +11,11 @@
 # **************************************************************************** #
 
 
-NAME = bsp
+NAME = claptrap
 
 CPP = c++
 
-SOURCE = main.cpp Fixed.cpp FixedComparison.cpp FixedArithmetic.cpp FixedIncrement.cpp Point.cpp bsp.cpp
+SOURCE = main.cpp ClapTrap.cpp
 
 FLAGS = -Wall -Werror -Wextra -std=c++98 -g3
 

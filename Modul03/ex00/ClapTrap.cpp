@@ -6,11 +6,12 @@
 /*   By: aialonso <aialonso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 14:45:20 by aialonso          #+#    #+#             */
-/*   Updated: 2026/10/19 17:01:02 by aialonso         ###   ########.fr       */
+/*   Updated: 2026/10/19 22:36:26 by aialonso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include <climits>
 
 ClapTrap::ClapTrap()
 	: _name(DEFAULT_NAME),
@@ -52,6 +53,53 @@ ClapTrap::~ClapTrap() {
 }
 
 void ClapTrap::attack(std::string const& target) {
+	if (_energyPoints == 0 || _hitPoints == 0) {
+		std::cout << "ClapTrap " << _name << " can't attack, it has no ";
+		if (_hitPoints == 0)
+			std::cout << "hit";
+		else
+			std::cout << "energy";
+		std::cout << " points left!" << std::endl;
+		return;
+	}
+	_energyPoints--;
 	std::cout << "ClapTrap " << _name << " attacks " << target;
-	std::cout << " causing 1 points of damage!" << std::endl;
+	std::cout << ", causing " << _attackDamage << " points of damage!"
+			  << std::endl;
+}
+
+void ClapTrap::takeDamage(unsigned int amount) {
+	std::cout << "ClapTrap " << _name;
+	if (_hitPoints == 0) {
+		std::cout << " is already dead!" << std::endl;
+		return;
+	}
+	std::cout << " takes " << amount << " points of damage ";
+	if (amount >= _hitPoints)
+		std::cout << "and dies!" << std::endl;
+	else
+		std::cout << (_hitPoints - amount) << " hit points left!" << std::endl;
+	if (amount <= _hitPoints)
+		_hitPoints -= amount;
+	else
+		_hitPoints = 0;
+}
+
+void ClapTrap::beRepaired(unsigned int amount) {
+	std::cout << "ClapTrap " << _name;
+	if (_hitPoints == 0 || _energyPoints == 0) {
+		std::cout << " can't repair, it has no ";
+		if (_hitPoints == 0)
+			std::cout << "hit points left!" << std::endl;
+		else
+			std::cout << "energy points left!" << std::endl;
+		return;
+	}
+	_energyPoints--;
+	if (amount > UINT_MAX - _hitPoints)
+		_hitPoints = UINT_MAX;
+	else
+		_hitPoints += amount;
+	std::cout << " repairs itself for " << amount << " hit points, ";
+	std::cout << _hitPoints << " hit points now!" << std::endl;
 }
